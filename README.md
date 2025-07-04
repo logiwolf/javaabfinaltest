@@ -1,61 +1,271 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# Laravel Blog Application
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This is a Laravel-based blog application with features such as post creation, tagging (via Tagify), file uploads, custom OTP password reset, and testing setup using PHPUnit.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## System Requirements
 
-## Learning Laravel
+| Tool          | Required Version  |
+|---------------|-------------------|
+| PHP           | ^8.2              |
+| Node.js       | >=16.15.0         |
+| NPM           | >=9.0.0           |
+| Laravel       | ^12.0             |
+| MySQL/SQLite  | Compatible version|
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+###  Required PHP Extensions
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Make sure these PHP extensions are installed and enabled:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- `pdo`
+- `pdo_sqlite` or `pdo_mysql`
+- `openssl`
+- `mbstring`
+- `tokenizer`
+- `xml`
+- `ctype`
+- `json`
+- `fileinfo`
+- `curl`
+- `bcmath` *(optional but recommended)*
+- `gd` *(required for image/media uploads)*
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📦 PHP Dependencies (`composer.json`)
 
-### Premium Partners
+```json
+"require": {
+  "php": "^8.2",
+  "laravel/framework": "^12.0",
+  "laravel/tinker": "^2.10.1",
+  "blade-ui-kit/blade-heroicons": "^2.6",
+  "blade-ui-kit/blade-icons": "^1.8",
+}
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
 
-## Contributing
+### Frontend (Node & NPM)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Node.js: **>= 16.15.0**
+- NPM: **>= 9.0.0** (Note: Tagify requires npm >=9)
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📦 JavaScript Dependencies
 
-## Security Vulnerabilities
+### Runtime Dependencies
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+These are installed in `dependencies` and required for your app in production:
 
-## License
+| Package                    | Version     | Purpose                              |
+|----------------------------|-------------|--------------------------------------|
+| `@fortawesome/fontawesome-free` | ^6.7.2   | Icons (Font Awesome)                 |
+| `@yaireo/tagify`           | ^4.35.1     | Tag input for tagging functionality |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Development Dependencies
+
+These are installed in `devDependencies` and used during development/building:
+
+| Package                   | Version     | Purpose                                      |
+|---------------------------|-------------|----------------------------------------------|
+| `vite`                    | ^6.2.4      | Modern frontend build tool                   |
+| `laravel-vite-plugin`     | ^1.2.0      | Integrates Vite with Laravel                 |
+| `tailwindcss`             | ^4.1.11     | Utility-first CSS framework                  |
+| `@tailwindcss/vite`       | ^4.0.0      | Tailwind integration for Vite                |
+| `@tailwindcss/postcss`    | ^4.1.11     | Tailwind plugin for PostCSS                  |
+| `postcss`                 | ^8.5.6      | CSS processing tool                          |
+| `autoprefixer`            | ^10.4.21    | Adds vendor prefixes to CSS                  |
+| `axios`                   | ^1.8.2      | Promise-based HTTP client for browser/Node.js|
+| `concurrently`            | ^9.0.1      | Run multiple commands concurrently           |
+
+
+##  Installation Guide
+
+Follow these steps to set up the project locally.
+
+###  Clone the repository
+
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+```
+
+### Install PHP Dependencies via Composer
+```
+composer install
+```
+
+### Install JS Dependencies via NPM
+```
+npm install
+```
+
+### Copy and Configure Environment File
+```
+cp .env.example .env
+php artisan key:generate
+```
+
+### Ensure the following .env settings are correct for your local dev:
+```
+DB_CONNECTION=sqlite
+SESSION_DRIVER=database
+QUEUE_CONNECTION=database
+FILESYSTEM_DISK=public
+```
+
+### Create a SQLite file if it doesn’t exist:
+```
+touch database/database.sqlite
+```
+
+### Update .env with the absolute path:
+```
+DB_CONNECTION=sqlite
+DB_DATABASE=/absolute/path/to/database/database.sqlite
+```
+### Run Migrations
+```
+php artisan migrate
+```
+
+###Run the Application
+You can use the following commands to start the backend and frontend:
+```
+npm run dev      # Starts Vite
+php artisan serve
+```
+## Run Your Tests
+Run all your tests with:
+
+```
+php artisan test
+```
+
+Or using PHPUnit directly:
+
+```
+./vendor/bin/phpunit
+```
+
+### Test Coverage
+This project includes feature tests for the following:
+
+ - User registration, login, logout
+ - Route protection
+ - Post CRUD operations
+ - OTP-based password reset
+
+You can find all tests inside the tests/Feature/ directory:
+
+```
+tests/Feature/
+```
+
+##  Mail Configuration (for OTP Password Reset)
+
+This project uses **Mailtrap** to handle email sending in development — for OTP-based password reset.
+
+###  `.env` Settings
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io 
+MAIL_PORT=2525
+MAIL_USERNAME=17f51a51d34832
+MAIL_PASSWORD=864870def27f35
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="ihsan"
+```
+
+# ⚠️ Important: Handling Vite Asset Loading in Layout for Tagify & Testing
+
+##  Vite Configuration in Layout
+
+To ensure the Tagify and other JavaScript components work correctly, use the following `@vite` directive only when the `manifest.json` file exists.
+
+###  Production / Development (Normal App Usage)
+
+Keep this code only in your `layout.blade.php` file to ensure assets like Tagify work properly:
+
+```blade
+@vite([
+  'resources/css/app.css',
+  'resources/js/app.js',
+  'resources/js/tagify-init.js',
+  'resources/js/like.js'
+  ]) 
+```
+and remove or cooment 
+```
+@if (file_exists(public_path('build/manifest.json')))
+  @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/tagify-init.js', 'resources/js/like.js'])
+  @endif
+])
+```
+
+
+
+### For Testing (e.g., PHPUnit, Feature Tests)
+During tests, Vite’s manifest might not be available, which can break the layout.
+REMOVE this line below in test environment, which is in `layout.blade.php` :
+
+```
+
+@vite([
+  'resources/css/app.css',
+  'resources/js/app.js',
+  'resources/js/tagify-init.js',
+  'resources/js/like.js'
+])
+
+```
+instead use 
+```
+@if (file_exists(public_path('build/manifest.json')))
+  @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/tagify-init.js', 'resources/js/like.js'])
+  @endif
+])
+```
+
+
+### Tech Stack
+
+
+ - Laravel ^12
+ - PHP ^8.2
+ - Tailwind CSS ^4
+ - Vite
+ - Alpine.js (optional, loaded)
+ - Tagify (for tag inputs)
+ - SQLite (default DB used in .env)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
