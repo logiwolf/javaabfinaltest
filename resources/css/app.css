@@ -1,0 +1,25 @@
+/* 👉 Font imports — must be at the very top */
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+
+/* 👉 Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 👉 Custom font-face (optional) */
+@font-face {
+    font-family: "Font Awesome 5 Pro";
+    src: url("/font/Font Awesome 5 Pro-Solid-900.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 👉 Custom class (optional) */
+.use-font-awesome {
+    font-family: "Font Awesome 5 Pro", sans-serif;
+}
