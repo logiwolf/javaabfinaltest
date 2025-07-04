@@ -4,11 +4,11 @@
 
 
     <!-- Title  -->
-    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 leading-snug">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 leading-snug break-words">
       {{ $post->title }}
     </h1>
 
-    <p class="text-sm text-gray-500">Slug: {{ $post->slug }}</p>
+
 
 
 
@@ -28,7 +28,7 @@
     @endif
 
     <!-- Body  -->
-    <div class="text-gray-800 leading-relaxed text-base sm:text-lg whitespace-pre-line">
+    <div class="text-gray-800 leading-relaxed text-base sm:text-lg whitespace-pre-line break-words">
       {{ $post->body }}
     </div>
 
