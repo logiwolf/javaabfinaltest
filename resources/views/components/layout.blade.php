@@ -13,21 +13,19 @@
 
 
 
-  <!-- @vite([
+  @vite([
   'resources/css/app.css',
   'resources/js/app.js',
   'resources/js/tagify-init.js',
   'resources/js/like.js'
-  ]) remove this code for testing, but keep this one a remove below one to work the tagify-->
+  ])
 
 
 
 
 
 
-  @if (file_exists(public_path('build/manifest.json')))
-  @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/tagify-init.js', 'resources/js/like.js'])
-  @endif
+
 
 
 
