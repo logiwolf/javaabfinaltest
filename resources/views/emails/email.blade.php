@@ -6,7 +6,7 @@
     <div class="text-green-600 mb-4">{{ session('status') }}</div>
     @endif
 
-    <form method="POST" action="{{ route('password.email') }}" class="space-y-6">
+    <form method="POST" action="{{ route('password.otp.send') }}" class="space-y-6">
       @csrf
       <div>
         <x-form.label for="email">Email</x-form.label>

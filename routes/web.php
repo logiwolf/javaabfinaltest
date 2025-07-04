@@ -34,6 +34,7 @@ Route::controller(PostController::class)->group(function () {
     Route::post('/posts/{post}/like', 'like')->name('posts.like');
 });
 
+
 // This is Auth: Login routes 
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'showLoginForm')->name('login');
